@@ -11,3 +11,5 @@ Feature list
 - [x] When a jailbreak is available, show the options. (partially done, device specific jailbreaks TBA)
 - [x] Footer with some information
 - [ ] Settings, Lock Screen or Home screen theme? 👀 
+
+Repository got fucked up, but not the files themself. All commits and stuff were reset.
