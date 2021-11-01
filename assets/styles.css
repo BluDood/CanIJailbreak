@@ -3,7 +3,7 @@ body {
     background: no-repeat center center;
     background-size: auto;
     color: white;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 p {
@@ -45,6 +45,10 @@ a:link, a:visited {
 .notios {
     margin: auto;
     width: 700px;
+}
+
+#notice15 {
+    font-size: 16px;
 }
 
 .footer {
