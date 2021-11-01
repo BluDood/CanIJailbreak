@@ -8,14 +8,16 @@
     <script src="./assets/jquery-3.6.0.min.js"></script>
     <script src="./assets/index.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 </head>
 
 <body onload="Jailbreak(), iOSVersion(), isIOS()">
     <div class="notios" id="notios" style="display: none;">
         <div class="container">
             <h1>Visit this website on your iPhone!</h1>
-            <p>Show if your device can be jailbroken, if there is a vulnerability for it, or suggestions for future jailbreaking!</p>
+            <p>Show if your device can be jailbroken, if there is a vulnerability for it, or suggestions for future
+                jailbreaking!</p>
         </div>
     </div>
     <div id="first" class="container">
@@ -40,41 +42,52 @@
             </select>
         </div>
         <p id="status"></p>
+        <p id="notice15" style="display: none;">Note: iOS 15 jailbreaks must be rootless. <br> <a href="./wiki/rootless/">What does this mean?</a></p>
     </div>
     <div id="second" class="info">
         <div id="vulns" class="vulnerabilities container stuff" style="display: none;">
             <h1>Vulnerabilities found:</h1>
             <hr style="border-top: 1px solid; border-radius: 100px">
-            <div class="listitem 15.01 15.0 14.8 14.7 14.6">
-                <p class="primary">IOMFB vulnerability</p>
-                <p class="secondary">Versions: 13.0 - 15.0.1 + 15.1 Beta 1-3</p>
-                <hr style="border-top: 1px solid; border-radius: 100px">
+            <div class="all">
+                <div class="listitem">
+                    <p class="primary">IOMFB vulnerability</p>
+                    <p class="secondary">Versions: 13.0 - 15.0.1 + 15.1 Beta 1-3</p>
+                    <hr style="border-top: 1px solid; border-radius: 100px">
+                </div>
             </div>
         </div>
         <div id="jailbreaks" class="jailbreaks container stuff" style="display: none;">
             <h1>Jailbreaks found:</h1>
             <hr style="border-top: 1px solid; border-radius: 100px">
-            <div class="listitem 14.51 14.5 14.42 14.41 14.4 14.3">
-                <p class="primary"><a href="https://github.com/LinusHenze/Fugu14" target=”_blank”>Fugu14</a></p>
-                <p class="secondary">Versions: 14.3 - 14.5.1</p>
-                <hr style="border-top: 1px solid; border-radius: 100px">
+            <div id="ios14" style="display: none;">
+                <div class="listitem">
+                    <p class="primary"><a href="https://unc0ver.dev" target=”_blank”>unc0ver</a></p>
+                    <p class="secondary">Versions: 11.0 - 14.5.1</p>
+                    <p class="secondary">Exploit: cicuta_virosa, Fugu14</p>
+                    <hr style="border-top: 1px solid; border-radius: 100px">
+                </div>
+                <div class="listitem">
+                    <p class="primary"><a href="https://taurine.app" target=”_blank”>Taurine</a></p>
+                    <p class="secondary">Versions: 14.0 - 14.3</p>
+                    <p class="secondary">Exploit: cicuta_virosa</p>
+                    <hr style="border-top: 1px solid; border-radius: 100px">
+                </div>
             </div>
-            <div class="listitem 14.3 14.21 14.2 14.1 14.01 14.0">
-                <p class="primary"><a href="https://taurine.app" target=”_blank”>Taurine</a></p>
-                <p class="secondary">Versions: 14.0 - 14.3</p>
-                <p class="secondary">Exploit: cicuta_virosa</p>
-                <hr style="border-top: 1px solid; border-radius: 100px">
-            </div>
-            <div class="listitem 14.3 14.21 14.2 14.1 14.01 14.0">
-                <p class="primary"><a href="https://unc0ver.dev" target=”_blank”>unc0ver</a></p>
-                <p class="secondary">Versions: 14.0 - 14.3</p>
-                <p class="secondary">Exploit: cicuta_virosa</p>
-                <hr style="border-top: 1px solid; border-radius: 100px">
+            <div id="ios13" style="display: none;">
+                <div class="listitem">
+                    <p class="primary"><a href="https://unc0ver.dev" target=”_blank”>unc0ver</a></p>
+                    <p class="secondary">Versions: 11.0 - 14.5.1</p>
+                    <hr style="border-top: 1px solid; border-radius: 100px">
+                </div>
+                <div class="listitem">
+                    <p class="primary"><a href="https://theodyssey.dev/" target=”_blank”>Odyssey</a></p>
+                    <p class="secondary">Versions: 13.0 - 13.7</p>
+                    <hr style="border-top: 1px solid; border-radius: 100px">
+                </div>
             </div>
         </div>
         <div id="suggestions" class="suggestions container stuff" style="display: none;">
             <h1>Suggestions</h1>
-            <hr style="border-top: 1px solid; border-radius: 100px">
             <div class="listitem">
                 <p class="primary"><a href="https://ios.cfw.guide/saving-blobs/" target=”_blank”>Save your Blobs!</a>
                 </p>
@@ -85,8 +98,10 @@
             </div>
         </div>
     </div>
+    <br><br><br><br>
     <div class="footer">
-        <span>Made by <a href="https://github.com/BluDood">BluDood</a> | <i class="fab fa-github"></i> <a href="https://github.com/BluDood/CanIJailbreak">GitHub</a></span>
+        <span>Made by <a href="https://github.com/BluDood">BluDood</a> | <i class="fab fa-github"></i> <a
+                href="https://github.com/BluDood/CanIJailbreak">GitHub</a></span>
     </div>
 </body>
 

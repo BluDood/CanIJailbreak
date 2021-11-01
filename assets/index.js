@@ -1,6 +1,6 @@
 // ugly code ahead, bring a bag to throw up in
 
-console.warn("Only supports iPhone for now!")
+console.warn("Only supports iPhones on iOS 14 for now!")
 
 var agent = navigator.userAgent
 
@@ -40,22 +40,36 @@ $(document).ready(function () {
 });
 
 function Jailbreak() {
+    var notice15 = document.getElementById("notice15")
+    var ios14 = document.getElementById("ios14")
+    var ios13 = document.getElementById("ios13")
     var status = document.getElementById("status")
     var vulns = document.getElementById("vulns")
     var jailbreaks = document.getElementById("jailbreaks")
     var suggestions = document.getElementById("suggestions")
 
     if (versionnumber <= Number("14.51")) {
-        status.innerHTML = "Good news! You can jailbreak with the tools under:"
+        status.innerHTML = "Good news, you can jailbreak! Here are some tools you can use:"
+        if (versionnumber >= Number("14")) {
+            ios14.style.display = "block";
+        } else if (versionnumber >= Number("13")) {
+            ios13.style.display = "block";
+        } else if (versionnumber >= Number("12")) {
+            status.innerHTML = "Not currently supported! Make a feature request on GitHub if you want support, and i'll consider it."
+            second.style.display = "none";
+        }
         jailbreaks.style.display = "block";
     } else if (versionnumber <= Number("15.01")) {
         status.innerHTML = "A jailbreak is not available for your device, BUT there is an exploitable bug compatible:"
+        if (versionnumber >= Number("15")) {
+            notice15.style.display = "block";
+        }
         vulns.style.display = "block";
     } else {
-        status.innerHTML = "Sorry, you cannot jailbreak your device at this time."
+        status.innerHTML = "Sorry, you cannot jailbreak your device at this time. Check again later!"
         suggestions.style.display = "block";
     }
-    }
+}
 
 function getUserAgent() {
     document.getElementById("useragent").innerHTML = agent
