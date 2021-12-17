@@ -1,3 +1,7 @@
+body {
+    background-image: url(/assets/img/003.jpg);
+}
+
 .topic a:link {
     font-size: 20px;
 }

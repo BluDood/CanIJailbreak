@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <title>Can I Jailbreak?</title>
     <link rel="stylesheet" href="./assets/styles.css">
-    <script src="./assets/jquery-3.6.0.min.js"></script>
-    <script src="./assets/index.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
@@ -16,94 +14,25 @@
     <meta property="og:description" content="Check if you can jailbreak your device!">
 </head>
 
-<body onload="Jailbreak(), iOSVersion(), isIOS()">
-    <div class="notios" id="notios" style="display: none;">
-        <div class="container">
-            <h1>Visit this website on your iPhone!</h1>
-            <p>Show if your device can be jailbroken, if there is a vulnerability for it, or suggestions for future
-                jailbreaking!</p>
-        </div>
+<body>
+    <div class="container notios">
+        <h1>Visit this website on your iPhone!</h1>
+        <p>See if your iOS device can be jailbroken, if there is a vulnerability for it, or suggestions for future jailbreaking!</p>
+        <h3>On an Apple Device? Please "Request Mobile Website".</h3>
     </div>
-    <div id="first" class="container">
-        <h1>
-            <span>iOS </span>
-            <span id="version"></span>
-        </h1>
-        <div class="choosedevice">
-            <label for="device">Choose a device:&nbsp;</label>
-
-            <select name="device" id="device">
-                <option disabled selected="true">Select a device...</option>
-                <option value="13">iPhone 13</option>
-                <option value="12">iPhone 12</option>
-                <option value="11">iPhone 11, SE2</option>
-                <option value="10R">iPhone XS, XR</option>
-                <option value="10">iPhone X</option>
-                <option value="8">iPhone 8</option>
-                <option value="7">iPhone 7</option>
-                <option value="6s">iPhone 6s, SE1</option>
-                <option value="6">iPhone 6</option>
-            </select>
-        </div>
-        <p id="status"></p>
-        <p id="notice15" style="display: none;"><i style="color: #007ACC;" class="fas fa-info-circle"></i> iOS 15
+    <div class="container device">
+        <h1 class="device-version">iOS </h1>
+        <p class="status"></p>
+        <p class="notice15" style="display: none;"><i style="color: #007ACC;" class="fas fa-info-circle"></i> iOS 15
             jailbreaks must be rootless. <br> <a href="./wiki/rootless/">What does this mean?</a></p>
     </div>
-    <div id="second" class="info">
-        <div id="vulns" class="vulnerabilities container stuff" style="display: none;">
-            <h1>Vulnerabilities found:</h1>
-            <hr style="border-top: 1px solid; border-radius: 100px">
-            <div class="all">
-                <div class="listitem">
-                    <p class="primary">IOMFB vulnerability</p>
-                    <p class="secondary">Versions: 13.0 - 15.0.1 + 15.1 Beta 1-3</p>
-                    <hr style="border-top: 1px solid; border-radius: 100px">
-                </div>
-            </div>
-        </div>
-        <div id="jailbreaks" class="jailbreaks container stuff" style="display: none;">
-            <h1>Jailbreaks found:</h1>
-            <hr style="border-top: 1px solid; border-radius: 100px">
-            <div id="ios14" style="display: none;">
-                <div class="listitem">
-                    <p class="primary"><a href="https://unc0ver.dev" target=”_blank”>unc0ver</a></p>
-                    <p class="secondary">Versions: 11.0 - 14.5.1</p>
-                    <p class="secondary">Exploit: cicuta_virosa, Fugu14</p>
-                    <hr style="border-top: 1px solid; border-radius: 100px">
-                </div>
-                <div class="listitem">
-                    <p class="primary"><a href="https://taurine.app" target=”_blank”>Taurine</a></p>
-                    <p class="secondary">Versions: 14.0 - 14.3</p>
-                    <p class="secondary">Exploit: cicuta_virosa</p>
-                    <hr style="border-top: 1px solid; border-radius: 100px">
-                </div>
-            </div>
-            <div id="ios13" style="display: none;">
-                <div class="listitem">
-                    <p class="primary"><a href="https://unc0ver.dev" target=”_blank”>unc0ver</a></p>
-                    <p class="secondary">Versions: 11.0 - 14.5.1</p>
-                    <hr style="border-top: 1px solid; border-radius: 100px">
-                </div>
-                <div class="listitem">
-                    <p class="primary"><a href="https://theodyssey.dev/" target=”_blank”>Odyssey</a></p>
-                    <p class="secondary">Versions: 13.0 - 13.7</p>
-                    <hr style="border-top: 1px solid; border-radius: 100px">
-                </div>
-            </div>
-        </div>
-        <div id="suggestions" class="suggestions container stuff" style="display: none;">
-            <h1>Suggestions</h1>
-            <div class="listitem">
-                <p class="primary"><a href="https://ios.cfw.guide/saving-blobs/" target=”_blank”>Save your Blobs!</a>
-                </p>
-                <p class="secondary">Saving your blobs gives you the option to downgrade or upgrade freely when
-                    jailbroken. This means if your version gets a jailbreak, then a newer version gets one, you can
-                    upgrade to that specific version with blobs.</p>
-                <hr style="border-top: 1px solid; border-radius: 100px">
-            </div>
-        </div>
+    <div class="container jailbreaks">
     </div>
-    <div class="container">
+    <div class="container suggestions">
+        <h2><a href="https://ios.cfw.guide/saving-blobs/">Save your Blobs!</a></h2>
+        <p>Saving your blobs gives you the option to downgrade or upgrade freely when jailbroken. This means if your version gets a jailbreak, then a newer version gets one, you can upgrade to that specific version with blobs.</p>
+    </div>
+    <div class="container links">
         <h1>Links</h1>
         <h2 style="line-height: 40px;">
             <a href="wiki">Wiki</a><br>
@@ -118,5 +47,5 @@
                 href="https://github.com/BluDood/CanIJailbreak">GitHub</a></span>
     </div>
 </body>
-
+<script src="./assets/index.js"></script>
 </html>
