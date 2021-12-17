@@ -1,13 +1,17 @@
 body { 
     font-family: sans-serif;
-    background: no-repeat center center;
-    background-size: auto;
+    background-repeat: no-repeat;
+    background-size: 200% 200%;
+    background-position: center center;
     color: white;
-    overflow-x: hidden;
 }
 
 p {
     font-size: 20px;
+}
+
+.notios {
+    display: none;
 }
 
 .container {
@@ -16,25 +20,6 @@ p {
     padding: 30px 20px 30px 20px;
     border-radius: 20px;
     background-color: rgba(0, 0, 0, 0.7);
-}
-
-.choosedevice select {
-    border: 1px solid rgba(0, 0, 0, 0);
-    border-radius: 100px;
-    background-color: gray;
-}
-
-.stuff h1 {
-    font-size: 24px;
-}
-
-.secondary {
-    font-size: 15px;
-    line-height: 20px;
-}
-
-.listitem {
-    line-height: 15px;
 }
 
 a:link, a:visited {
@@ -57,32 +42,33 @@ a:link, a:visited {
     text-align: center;
 }
 
-.bg1 {background-image: url(./img/001.jpg);}
-.bg2 {background-image: url(./img/002.jpg);}
-.bg3 {background-image: url(./img/003.jpg);}
-.bg4 {background-image: url(./img/004.jpg);}
-.bg5 {background-image: url(./img/005.jpg);}
-.bg6 {background-image: url(./img/006.jpg);}
-.bg7 {background-image: url(./img/007.jpg);}
-.bg8 {background-image: url(./img/008.jpg);}
-.bg9 {background-image: url(./img/009.jpg);}
-.bg10 {background-image: url(./img/010.jpg);}
-.bg11 {background-image: url(./img/011.jpg);}
-.bg12 {background-image: url(./img/012.jpg);}
-.bg13 {background-image: url(./img/013.jpg);}
-.bg14 {background-image: url(./img/014.jpg);}
-.bg15 {background-image: url(./img/015.jpg);}
-
-
-@media only screen and (max-width: 700px) {
-    .notios .container {
-        width: 90vw;
-    }
-  }
+.bg1 {background-size: 200%; background-image: url(./img/001.jpg);}
+.bg2 {background-size: 200%; background-image: url(./img/002.jpg);}
+.bg3 {background-size: 200%; background-image: url(./img/003.jpg);}
+.bg4 {background-size: 200%; background-image: url(./img/004.jpg);}
+.bg5 {background-size: 200%; background-image: url(./img/005.jpg);}
+.bg6 {background-size: 200%; background-image: url(./img/006.jpg);}
+.bg7 {background-size: 200%; background-image: url(./img/007.jpg);}
+.bg8 {background-size: 200%; background-image: url(./img/008.jpg);}
+.bg9 {background-size: 200%; background-image: url(./img/009.jpg);}
+.bg10 {background-size: 200%; background-image: url(./img/010.jpg);}
+.bg11 {background-size: 200%; background-image: url(./img/011.jpg);}
+.bg12 {background-size: 200%; background-image: url(./img/012.jpg);}
+.bg13 {background-size: 200%; background-image: url(./img/013.jpg);}
+.bg14 {background-size: 200%; background-image: url(./img/014.jpg);}
+.bg15 {background-size: 200%; background-image: url(./img/015.jpg);}
 
 @media only screen and (min-width: 700px) {
     body {
         background-position: center;
         background-size: 100%;
     }
-  }  
+}  
+
+@media only screen and (min-width: 1100px) {
+
+    .container {
+        width: 1040px;
+        margin: 10px auto;
+    }
+}  
