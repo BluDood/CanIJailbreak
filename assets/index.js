@@ -1,4 +1,4 @@
-// array of current jailbreaks (if you would like to add one, make a feature request!)
+// Array of current jailbreaks (if you would like to add one, make a feature request!)
 const jailbreaks = [
     {
         "name": "Taurine",
@@ -247,7 +247,7 @@ const jailbreaks = [
     }
 ]
 
-// array of vulnerabilities (if you would like to add one, make a feature request!)
+// Array of vulnerabilities (if you would like to add one, make a feature request!)
 const vulnerabilities = [
     {
         "name": "CVE-2021-30955",
@@ -281,13 +281,19 @@ const vulnerabilities = [
 window.jailbreakable = false
 window.vulnCompatible = false
 
-// Device information
+/*
+    Device information
+*/
+
+// Get device type and version
 var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 var device = navigator.userAgent.slice(navigator.userAgent.indexOf('(') + 1, navigator.userAgent.indexOf('; CPU'))
 window.version = navigator.userAgent.slice(navigator.userAgent.indexOf('OS') + 3, navigator.userAgent.indexOf(' like Mac OS X')).replace("_", ".").replace("_", ".");
 
+// If the device is an iPad, then the OS is iPadOS
 if (device == "iPad") window.os = "iPadOS"; else window.os = "iOS"
 
+// Check if the device is on iOS
 if (!isIOS) {
     console.log("This device is not on iOS!")
     document.querySelector(".notios").style.display = "block"
@@ -295,14 +301,12 @@ if (!isIOS) {
     document.querySelector(".suggestions").style.display = "none"
 } else listJailbreaks(), listVulnerabilities(), document.querySelector(".suggestions").style.display = "none"
 
-// random background from selection of wallpapers (from stackoverflow, slightly edited by me so i don't need jquery)
-var classCycle = ['bg1', 'bg2', 'bg3', 'bg4', 'bg5', 'bg6', 'bg7', 'bg8', 'bg9', 'bg10', 'bg11', 'bg12', 'bg13', 'bg14', 'bg15',];
-var randomNumber = Math.floor(Math.random() * classCycle.length);
-var classToAdd = classCycle[randomNumber];
-document.body.classList.add(classToAdd)
+// Random background from selection of wallpapers
+document.body.style.backgroundImage = `url(/assets/img/random/${Math.floor(Math.random() * 16)}.jpg)`
 
-// display device and version on webpage
+// Display OS and version on webpage
 document.querySelector(".device-version").innerText = `${window.os} ${window.version}`
+
 
 // List compatible jailbreaks
 function listJailbreaks() {
@@ -322,6 +326,7 @@ function listJailbreaks() {
     });
 }
 
+// List compatible vulnerabilities
 function listVulnerabilities() {
     vulnerabilities.forEach(element => {
         var version = window.version
@@ -336,20 +341,31 @@ function listVulnerabilities() {
     });
 }
 
+/*
+    Check if the device is:
+*/
+// Not jailbreakable nor vulnerable
 if (!window.jailbreakable && !window.vulnCompatible) {
     document.querySelector(".jailbreaks").style.display = "none"
     if (isIOS) {
         document.querySelector(".suggestions").style.display = "block"
     }
     document.querySelector(".status").innerText = "Sorry, but your device does not currently have any supported jailbreaks or vulnerabilities. See suggestions below:"
+
+// Jailbreakable but not vulenrable
 } else if (window.jailbreakable && !window.vulnCompatible) {
     document.querySelector(".status").innerText = "Good news, you can jailbreak your device! Check out these tools:"
+
+// Jailbreakable and vulnerable
 } else if (window.jailbreakable && window.vulnCompatible) {
     document.querySelector(".status").innerText = "Good news, you can jailbreak your device! There are also some vulnerabilities for your version. Check out these tools and vulnerabilities:"
+
+// Not jailbreakable but vulnerable
 } else if (!window.jailbreakable && window.vulnCompatible) {
     document.querySelector(".status").innerText = "There are no jailbreaks available, but one or more vulnerabilities have been found:"
 }
 
+// Display rootless jailbreak notice for iOS 15+
 if (Number(window.version) >= 15) {
     document.querySelector(".notice15").style.display = "block"
 }
