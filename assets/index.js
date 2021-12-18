@@ -1,3 +1,18 @@
+// Function to get relative time
+function timeFormatter(option, date) {
+    if (!option || !date) return
+    if (option == "relative") {
+        return Math.ceil((new Date(date).getTime() - new Date().getTime()) / (1000*60*60*24))
+    } else if (option == "format") {
+        var date = new Date(date)
+        var month = date.toLocaleString('en-us', {month:'long'})
+        var formatted = `${date.getDate()} ${month}, ${date.getFullYear()}`
+        return formatted
+    } else  {
+        return
+    }
+}
+
 // Array of current jailbreaks (if you would like to add one, make a feature request!)
 const jailbreaks = [
     {
@@ -269,7 +284,7 @@ const vulnerabilities = [
             "14.4.1",
             "14.4"
         ],
-        "releaseDate": "~ 14. February 2022",
+        "releaseDate": "2022, 2, 14",
         "link": "https://twitter.com/realBrightiup/status/1470535136047513609",
         "appleSecurity": "https://support.apple.com/en-us/HT212976",
         "processors": [
@@ -302,7 +317,7 @@ if (!isIOS) {
 } else listJailbreaks(), listVulnerabilities(), document.querySelector(".suggestions").style.display = "none"
 
 // Random background from selection of wallpapers
-document.body.style.backgroundImage = `url(/assets/img/random/${Math.floor(Math.random() * 16)}.jpg)`
+document.body.style.backgroundImage = `url(/assets/img/random/${Math.floor(Math.random() * 15)}.jpg)`
 
 // Display OS and version on webpage
 document.querySelector(".device-version").innerText = `${window.os} ${window.version}`
@@ -333,9 +348,11 @@ function listVulnerabilities() {
         if (element.versions.includes(version)) {
             console.log(`${element.name} is compatible with your device!`);
             window.vulnCompatible = true
+            var readableDate = timeFormatter("format", element.releaseDate)
+            var relativeDate = timeFormatter("relative", element.releaseDate)
             // add to page
             var div = document.createElement("div")
-            div.innerHTML = `<div><h2>${element.name}</h2><h3>Supported versions:</h3><p>${element.versions.pop()} - ${element.versions.shift()}</p><h3>Supported processors:</h3><p>${element.processors}</p><h3>Expected release date:</h3><p>${element.releaseDate}</p><a href="${element.link}" target="_blank">Link to Post</a><br><br><a href="${element.appleSecurity}" target="_blank">Link to Security Content</a><br><br><hr></div>`
+            div.innerHTML = `<div><h2>${element.name}</h2><h3>Supported versions:</h3><p>${element.versions.pop()} - ${element.versions.shift()}</p><h3>Supported processors:</h3><p>${element.processors || "All"}</p><h3>Expected release date:</h3><p>${readableDate || "Not specified"}</p><p>~ In ${relativeDate} days</p><a href="${element.link}" target="_blank">Link to Post</a><br><br><a href="${element.appleSecurity}" target="_blank">Link to Security Content</a><br><br><hr></div>`
             document.querySelector(".jailbreaks").append(div)
         }
     });
