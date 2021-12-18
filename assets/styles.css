@@ -1,8 +1,10 @@
 body { 
     font-family: sans-serif;
     background-repeat: no-repeat;
+    background-size: cover;
     background-position: center center;
     color: white;
+    background-attachment: fixed;
 }
 
 p {
@@ -100,22 +102,6 @@ a:link, a:visited {
     color: white;
     text-align: center;
 }
-
-.bg1 {background-size: auto cover; background-image: url(./img/001.jpg);}
-.bg2 {background-size: auto cover; background-image: url(./img/002.jpg);}
-.bg3 {background-size: auto cover; background-image: url(./img/003.jpg);}
-.bg4 {background-size: auto cover; background-image: url(./img/004.jpg);}
-.bg5 {background-size: auto cover; background-image: url(./img/005.jpg);}
-.bg6 {background-size: auto cover; background-image: url(./img/006.jpg);}
-.bg7 {background-size: auto cover; background-image: url(./img/007.jpg);}
-.bg8 {background-size: auto cover; background-image: url(./img/008.jpg);}
-.bg9 {background-size: auto cover; background-image: url(./img/009.jpg);}
-.bg10 {background-size: auto cover; background-image: url(./img/010.jpg);}
-.bg11 {background-size: auto cover; background-image: url(./img/011.jpg);}
-.bg12 {background-size: auto cover; background-image: url(./img/012.jpg);}
-.bg13 {background-size: auto cover; background-image: url(./img/013.jpg);}
-.bg14 {background-size: auto cover; background-image: url(./img/014.jpg);}
-.bg15 {background-size: auto cover; background-image: url(./img/015.jpg);}
 
 @media only screen and (min-width: 700px) {
     body {
