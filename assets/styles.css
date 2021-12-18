@@ -1,13 +1,72 @@
 body { 
     font-family: sans-serif;
     background-repeat: no-repeat;
-    background-size: 200% 200%;
     background-position: center center;
     color: white;
 }
 
 p {
     font-size: 20px;
+}
+
+.loading {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #232323;
+    z-index: 1;
+    animation: fade 1s ease forwards 1.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.loading h2 {
+    font-size: 30px;
+}
+
+.loading > div {
+    bottom: 10px;
+}
+
+.loading span {
+    vertical-align: middle;
+}
+
+.loading img {
+    width: 50px;
+    vertical-align: middle;
+}
+
+.loading svg {
+    animation: load 1s linear infinite;
+}
+
+@keyframes load {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fade {
+    0% {
+        opacity: 1;
+    }
+
+    99% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+        pointer-events: none;
+    }
 }
 
 .notios {
@@ -42,21 +101,21 @@ a:link, a:visited {
     text-align: center;
 }
 
-.bg1 {background-size: 200%; background-image: url(./img/001.jpg);}
-.bg2 {background-size: 200%; background-image: url(./img/002.jpg);}
-.bg3 {background-size: 200%; background-image: url(./img/003.jpg);}
-.bg4 {background-size: 200%; background-image: url(./img/004.jpg);}
-.bg5 {background-size: 200%; background-image: url(./img/005.jpg);}
-.bg6 {background-size: 200%; background-image: url(./img/006.jpg);}
-.bg7 {background-size: 200%; background-image: url(./img/007.jpg);}
-.bg8 {background-size: 200%; background-image: url(./img/008.jpg);}
-.bg9 {background-size: 200%; background-image: url(./img/009.jpg);}
-.bg10 {background-size: 200%; background-image: url(./img/010.jpg);}
-.bg11 {background-size: 200%; background-image: url(./img/011.jpg);}
-.bg12 {background-size: 200%; background-image: url(./img/012.jpg);}
-.bg13 {background-size: 200%; background-image: url(./img/013.jpg);}
-.bg14 {background-size: 200%; background-image: url(./img/014.jpg);}
-.bg15 {background-size: 200%; background-image: url(./img/015.jpg);}
+.bg1 {background-size: auto cover; background-image: url(./img/001.jpg);}
+.bg2 {background-size: auto cover; background-image: url(./img/002.jpg);}
+.bg3 {background-size: auto cover; background-image: url(./img/003.jpg);}
+.bg4 {background-size: auto cover; background-image: url(./img/004.jpg);}
+.bg5 {background-size: auto cover; background-image: url(./img/005.jpg);}
+.bg6 {background-size: auto cover; background-image: url(./img/006.jpg);}
+.bg7 {background-size: auto cover; background-image: url(./img/007.jpg);}
+.bg8 {background-size: auto cover; background-image: url(./img/008.jpg);}
+.bg9 {background-size: auto cover; background-image: url(./img/009.jpg);}
+.bg10 {background-size: auto cover; background-image: url(./img/010.jpg);}
+.bg11 {background-size: auto cover; background-image: url(./img/011.jpg);}
+.bg12 {background-size: auto cover; background-image: url(./img/012.jpg);}
+.bg13 {background-size: auto cover; background-image: url(./img/013.jpg);}
+.bg14 {background-size: auto cover; background-image: url(./img/014.jpg);}
+.bg15 {background-size: auto cover; background-image: url(./img/015.jpg);}
 
 @media only screen and (min-width: 700px) {
     body {
