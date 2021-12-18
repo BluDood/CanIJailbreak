@@ -281,15 +281,10 @@ const vulnerabilities = [
 window.jailbreakable = false
 window.vulnCompatible = false
 
-// check what the device is
+// Device information
 var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 var device = navigator.userAgent.slice(navigator.userAgent.indexOf('(') + 1, navigator.userAgent.indexOf('; CPU'))
-
-if (device == "iPhone") {
-    window.version = navigator.userAgent.slice(navigator.userAgent.indexOf('iPhone OS') + 10, navigator.userAgent.indexOf(' like Mac OS X')).replace("_", ".").replace("_", ".");
-} else if (device == "iPad") {
-    window.version = navigator.userAgent.slice(navigator.userAgent.indexOf('CPU OS') + 7, navigator.userAgent.indexOf(' like Mac OS X')).replace("_", ".").replace("_", ".");
-}
+window.version = navigator.userAgent.slice(navigator.userAgent.indexOf('OS') + 3, navigator.userAgent.indexOf(' like Mac OS X')).replace("_", ".").replace("_", ".");
 
 if (device == "iPad") window.os = "iPadOS"; else window.os = "iOS"
 
@@ -308,40 +303,6 @@ document.body.classList.add(classToAdd)
 
 // display device and version on webpage
 document.querySelector(".device-version").innerText = `${window.os} ${window.version}`
-
-// old function for displaying jailbreaks
-function oldJailbreak() {
-    var notice15 = document.getElementById("notice15")
-    var ios14 = document.getElementById("ios14")
-    var ios13 = document.getElementById("ios13")
-    var status = document.getElementById("status")
-    var vulns = document.getElementById("vulns")
-    var jailbreaks = document.getElementById("jailbreaks")
-    var suggestions = document.getElementById("suggestions")
-    var versionnumber = window.version
-
-    if (versionnumber <= Number("14.51")) {
-        status.innerHTML = "Good news, you can jailbreak! Here are some tools you can use:"
-        if (versionnumber >= Number("14")) {
-            ios14.style.display = "block";
-        } else if (versionnumber >= Number("13")) {
-            ios13.style.display = "block";
-        } else if (versionnumber >= Number("12")) {
-            status.innerHTML = "Not currently supported! Make a feature request on GitHub if you want support, and i'll consider it."
-            second.style.display = "none";
-        }
-        jailbreaks.style.display = "block";
-    } else if (versionnumber <= Number("15.01")) {
-        status.innerHTML = "A jailbreak is not available for your device, BUT there is an exploitable bug compatible:"
-        if (versionnumber >= Number("15")) {
-            notice15.style.display = "block";
-        }
-        vulns.style.display = "block";
-    } else {
-        status.innerHTML = "Sorry, you cannot jailbreak your device at this time. Check again later!"
-        suggestions.style.display = "block";
-    }
-}
 
 // List compatible jailbreaks
 function listJailbreaks() {
