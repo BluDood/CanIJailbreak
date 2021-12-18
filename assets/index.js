@@ -284,7 +284,7 @@ const vulnerabilities = [
             "14.4.1",
             "14.4"
         ],
-        "releaseDate": "2022, 2, 14",
+        "releaseDate": "02/14/2022",
         "link": "https://twitter.com/realBrightiup/status/1470535136047513609",
         "appleSecurity": "https://support.apple.com/en-us/HT212976",
         "processors": [
