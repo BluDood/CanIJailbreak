@@ -284,7 +284,8 @@ const vulnerabilities = [
             "14.4.1",
             "14.4"
         ],
-        "releaseDate": "02/14/2022",
+        "releaseDate": "02/16/2022",
+        "approximate": true,
         "link": "https://twitter.com/realBrightiup/status/1470535136047513609",
         "appleSecurity": "https://support.apple.com/en-us/HT212976",
         "processors": [
@@ -348,11 +349,11 @@ function listVulnerabilities() {
         if (element.versions.includes(version)) {
             console.log(`${element.name} is compatible with your device!`);
             window.vulnCompatible = true
-            var readableDate = timeFormatter("format", element.releaseDate)
-            var relativeDate = timeFormatter("relative", element.releaseDate)
+            var readableDate = (element.approximate ? '~ ' : '') + timeFormatter("format", element.releaseDate)
+            var relativeDate = timeFormatter("relative", element.releaseDate) <= 0 ? 'eta s0n' : `In${element.approximate ? ' approximately' : ''} ${timeFormatter("relative", element.releaseDate)} day${timeFormatter("relative", element.releaseDate) === 1 ? '' : 's'}`
             // add to page
             var div = document.createElement("div")
-            div.innerHTML = `<div><h2>${element.name}</h2><h3>Supported versions:</h3><p>${element.versions.pop()} - ${element.versions.shift()}</p><h3>Supported processors:</h3><p>${element.processors || "All"}</p><h3>Expected release date:</h3><p>${readableDate || "Not specified"}</p><p>~ In ${relativeDate} days</p><a href="${element.link}" target="_blank">Link to Post</a><br><br><a href="${element.appleSecurity}" target="_blank">Link to Security Content</a><br><br><hr></div>`
+            div.innerHTML = `<div><h2>${element.name}</h2><h3>Supported versions:</h3><p>${element.versions.pop()} - ${element.versions.shift()}</p><h3>Supported processors:</h3><p>${element.processors || "All"}</p><h3>Expected release date:</h3><p>${readableDate || "Not specified"}</p><p>${relativeDate}</p><a href="${element.link}" target="_blank">Link to Post</a><br><br><a href="${element.appleSecurity}" target="_blank">Link to Security Content</a><br><br><hr></div>`
             document.querySelector(".jailbreaks").append(div)
         }
     });
