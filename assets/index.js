@@ -290,7 +290,8 @@ const vulnerabilities = [
         "appleSecurity": "https://support.apple.com/en-us/HT212976",
         "processors": [
             "All"
-        ]
+        ],
+        "notes": 'Brightiup has posted an update, saying the release date was only an estimate. Read more <a href="https://twitter.com/realBrightiup/status/1493896612006948867">here</a>'
     }
 ]
 
@@ -353,7 +354,7 @@ function listVulnerabilities() {
             var relativeDate = timeFormatter("relative", element.releaseDate) <= 0 ? 'eta s0n' : `In${element.approximate ? ' approximately' : ''} ${timeFormatter("relative", element.releaseDate)} day${timeFormatter("relative", element.releaseDate) === 1 ? '' : 's'}`
             // add to page
             var div = document.createElement("div")
-            div.innerHTML = `<div><h2>${element.name}</h2><h3>Supported versions:</h3><p>${element.versions.pop()} - ${element.versions.shift()}</p><h3>Supported processors:</h3><p>${element.processors || "All"}</p><h3>Expected release date:</h3><p>${readableDate || "Not specified"}</p><p>${relativeDate}</p><a href="${element.link}" target="_blank">Link to Post</a><br><br><a href="${element.appleSecurity}" target="_blank">Link to Security Content</a><br><br><hr></div>`
+            div.innerHTML = `<div><h2>${element.name}</h2><h3>Supported versions:</h3><p>${element.versions.pop()} - ${element.versions.shift()}</p><h3>Supported processors:</h3><p>${element.processors || "All"}</p><h3>Expected release date:</h3><p>${readableDate || "Not specified"}</p><p>${relativeDate}</p>${element.notes ? `<h3>Notes:</h3><p>${element.notes.replace('\n', '<br>')}</p>` : ''}<a href="${element.link}" target="_blank">Link to Post</a><br><br><a href="${element.appleSecurity}" target="_blank">Link to Security Content</a><br><br><hr></div>`
             document.querySelector(".jailbreaks").append(div)
         }
     });
