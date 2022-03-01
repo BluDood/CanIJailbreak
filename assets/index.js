@@ -280,7 +280,7 @@ const vulnerabilities = [
         "processors": [
             "All"
         ],
-        "notes": 'Brightiup has posted an update, saying the release date was only an estimate. Read more <a href="https://twitter.com/realBrightiup/status/1493896612006948867">here</a>'
+        "notes": '<strong>UPDATE!</strong> <a href="https://twitter.com/realBrightiup/status/1496381284104519681">Brightiup has posted a writeup</a>, and pattern-f has replied and retweeted the post. This might mean that pattern-f is working on an exploit!'
     }
 ]
 
