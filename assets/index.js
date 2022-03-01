@@ -280,7 +280,7 @@ const vulnerabilities = [
         "processors": [
             "All"
         ],
-        "notes": '<strong>UPDATE!</strong> <a href="https://twitter.com/realBrightiup/status/1496381284104519681">Brightiup has posted a writeup</a>, and pattern-f has replied and retweeted the post. This might mean that pattern-f is working on an exploit!'
+        "notes": "Multiple POCs have been posted, including people who are working on exploits. Stay tunes for more updates!"
     }
 ]
 
