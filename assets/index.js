@@ -267,6 +267,7 @@ const vulnerabilities = [
     {
         "name": "CVE-2021-30955",
         "versions": [
+            "15.2 beta 1",
             "15.1.1",
             "15.1",
             "15.0.2",
@@ -280,7 +281,7 @@ const vulnerabilities = [
         "processors": [
             "All"
         ],
-        "notes": "Multiple POCs have been posted, including people who are working on exploits. Stay tunes for more updates!"
+        "notes": 'Here is some more information:<br><a href="https://github.com/b1n4r1b01/desc_race">Full Exploit ready for jailbreaking</a><br><a href="https://github.com/verygenericname/CVE-2021-30955-POC-IPA">POC ipa</a><br><a href="https://twitter.com/Jakeashacks/status/1498645912641495044">Jake James saying they will work on an exploit themselves</a><br><a href="https://twitter.com/realBrightiup/status/1496381284104519681">Brightiup initially releasing the writeup</a>'
     }
 ]
 
