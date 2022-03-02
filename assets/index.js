@@ -2,13 +2,13 @@
 function timeFormatter(option, date) {
     if (!option || !date) return
     if (option == "relative") {
-        return Math.ceil((new Date(date).getTime() - new Date().getTime()) / (1000*60*60*24))
+        return Math.ceil((new Date(date).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))
     } else if (option == "format") {
         var date = new Date(date)
-        var month = date.toLocaleString('en-us', {month:'long'})
+        var month = date.toLocaleString('en-us', { month: 'long' })
         var formatted = `${date.getDate()} ${month}, ${date.getFullYear()}`
         return formatted
-    } else  {
+    } else {
         return
     }
 }
@@ -109,6 +109,10 @@ const jailbreaks = [
         "name": "unc0ver",
         "link": "https://unc0ver.dev",
         "versions": [
+            "14.8",
+            "14.7.1",
+            "14.7",
+            "14.6",
             "14.5.1",
             "14.5",
             "14.4.2",
@@ -183,7 +187,8 @@ const jailbreaks = [
             "11.0.2",
             "11.0.1",
             "11.0"
-        ]
+        ],
+        "notes": "14.4 - 14.5.1 is only supported on A12 - A14 (Fugu14)<br>14.6 - 14.8 is only supported on A12-A13 iPhones"
     },
     {
         "name": "checkra1n",
@@ -310,6 +315,10 @@ if (!isIOS) {
 
 // Random background from selection of wallpapers
 document.body.style.backgroundImage = `url(/assets/img/random/${Math.floor(Math.random() * 15)}.jpg)`
+if (isIOS) {
+    document.body.style.backgroundAttachment = 'scroll'
+    document.body.style.backgroundSize = '100% 100%'
+}
 
 // Display OS and version on webpage
 document.querySelector(".device-version").innerText = `${window.os} ${window.version}`
@@ -323,10 +332,10 @@ function listJailbreaks() {
             console.log(`${element.name} is compatible with your device!`);
             window.jailbreakable = true
             // add to page
-            if (element.processors) var processors = `${element.processors.pop()} - ${element.processors.shift()}`; else var processors = "All"
+            if (element.processors) var processors = `${element.processors[element.processors.length - 1]} - ${element.processors[0]}`; else var processors = "All"
 
             var div = document.createElement("div")
-            div.innerHTML = `<div><h2>${element.name}</h2><h3>Supported versions:</h3><p>${element.versions.pop()} - ${element.versions.shift()}</p><h3>Supported processors:</h3><p>${processors}</p><a href="${element.link}" target="_blank">Download</a><br><br><hr></div>`
+            div.innerHTML = `<div><h2>${element.name}</h2><h3>Supported versions:</h3><p>${element.versions[element.versions.length - 1]} - ${element.versions[0]}</p><h3>Supported processors:</h3><p>${processors}</p>${element.notes ? `<h3>Notes:</h3><p>${element.notes}</p>` : ''}<a href="${element.link}" target="_blank">Download</a><br><br><hr></div>`
             document.querySelector(".jailbreaks").append(div)
 
         }
@@ -344,7 +353,7 @@ function listVulnerabilities() {
             var relativeDate = timeFormatter("relative", element.releaseDate) <= 0 ? 'eta s0n' : `In${element.approximate ? ' approximately' : ''} ${timeFormatter("relative", element.releaseDate)} day${timeFormatter("relative", element.releaseDate) === 1 ? '' : 's'}`
             // add to page
             var div = document.createElement("div")
-            div.innerHTML = `<div><h2>${element.name}</h2><h3>Supported versions:</h3><p>${element.versions.pop()} - ${element.versions.shift()}</p><h3>Supported processors:</h3><p>${element.processors || "All"}</p><h3>Expected release date:</h3><p>${readableDate || "Not specified"}</p><p>${relativeDate}</p>${element.notes ? `<h3>Notes:</h3><p>${element.notes.replace('\n', '<br>')}</p>` : ''}<a href="${element.link}" target="_blank">Link to Post</a><br><br><a href="${element.appleSecurity}" target="_blank">Link to Security Content</a><br><br><hr></div>`
+            div.innerHTML = `<div><h2>${element.name}</h2><h3>Supported versions:</h3><p>${element.versions[element.versions.length - 1]} - ${element.versions.shift()}</p><h3>Supported processors:</h3><p>${element.processors || "All"}</p><h3>Expected release date:</h3><p>${readableDate || "Not specified"}</p><p>${relativeDate}</p>${element.notes ? `<h3>Notes:</h3><p>${element.notes}</p>` : ''}<a href="${element.link}" target="_blank">Link to Post</a><br><br><a href="${element.appleSecurity}" target="_blank">Link to Security Content</a><br><br><hr></div>`
             document.querySelector(".jailbreaks").append(div)
         }
     });
@@ -378,3 +387,79 @@ if (!window.jailbreakable && !window.vulnCompatible) {
 if (Number(window.version) >= 15) {
     document.querySelector(".notice15").style.display = "block"
 }
+
+/*
+    Collapsable elements
+    https://css-tricks.com/using-css-transitions-auto-dimensions/#aa-technique-3-javascript
+*/
+function collapseSection(element) {
+    var sectionHeight = element.scrollHeight;
+
+    var elementTransition = element.style.transition;
+    element.style.transition = '';
+
+    requestAnimationFrame(function () {
+        element.style.height = sectionHeight + 'px';
+        element.style.transition = elementTransition;
+
+        requestAnimationFrame(function () {
+            element.style.height = 0 + 'px';
+        });
+    });
+
+    element.setAttribute('data-collapsed', 'true');
+}
+
+function expandSection(element) {
+    var sectionHeight = element.scrollHeight;
+
+    element.style.height = sectionHeight + 'px';
+
+    element.addEventListener('transitionend', function (e) {
+        element.removeEventListener('transitionend', arguments.callee);
+        element.style.height = null;
+    });
+
+    element.setAttribute('data-collapsed', 'false');
+}
+const allJailbreaks = document.querySelector('.alljb')
+const allVulnerabilities = document.querySelector('.allvuln')
+collapseSection(allJailbreaks.querySelector('div'))
+collapseSection(allVulnerabilities.querySelector('div'))
+allJailbreaks.querySelector('button').addEventListener('click', () => {
+    var section = allJailbreaks.querySelector('div');
+    var isCollapsed = section.getAttribute('data-collapsed') === 'true';
+
+    if (isCollapsed) {
+        expandSection(section)
+        section.setAttribute('data-collapsed', 'false')
+    } else {
+        collapseSection(section)
+    }
+});
+allVulnerabilities.querySelector('button').addEventListener('click', () => {
+    var section = allVulnerabilities.querySelector('div');
+    var isCollapsed = section.getAttribute('data-collapsed') === 'true';
+
+    if (isCollapsed) {
+        expandSection(section)
+        section.setAttribute('data-collapsed', 'false')
+    } else {
+        collapseSection(section)
+    }
+});
+// Add all jailbreaks and vulnerabilities to a collapsable section
+jailbreaks.forEach(element => {
+    if (element.processors) var processors = `${element.processors[element.processors.length - 1]} - ${element.processors[0]}`; else var processors = "All"
+
+    var div = document.createElement("div")
+    div.innerHTML = `<div><h2>${element.name}</h2><h3>Supported versions:</h3><p>${element.versions[element.versions.length - 1]} - ${element.versions[0]}</p><h3>Supported processors:</h3><p>${processors}</p><a href="${element.link}" target="_blank">Download</a><br><br><hr></div>`
+    allJailbreaks.querySelector("div").append(div)
+});
+vulnerabilities.forEach(element => {
+    var readableDate = (element.approximate ? '~ ' : '') + timeFormatter("format", element.releaseDate)
+    var relativeDate = timeFormatter("relative", element.releaseDate) <= 0 ? 'eta s0n' : `In${element.approximate ? ' approximately' : ''} ${timeFormatter("relative", element.releaseDate)} day${timeFormatter("relative", element.releaseDate) === 1 ? '' : 's'}`
+    var div = document.createElement("div")
+    div.innerHTML = `<div><h2>${element.name}</h2><h3>Supported versions:</h3><p>${element.versions[element.versions.length - 1]} - ${element.versions[0]}</p><h3>Supported processors:</h3><p>${element.processors || "All"}</p><h3>Expected release date:</h3><p>${readableDate || "Not specified"}</p><p>${relativeDate}</p><a href="${element.link}" target="_blank">Link to Post</a><br><br><a href="${element.appleSecurity}" target="_blank">Link to Security Content</a><br><br><hr></div>`
+    allVulnerabilities.querySelector("div").append(div)
+});

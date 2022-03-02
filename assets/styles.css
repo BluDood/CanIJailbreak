@@ -103,6 +103,22 @@ a:link, a:visited {
     text-align: center;
 }
 
+.alljb > div,
+.allvuln > div {
+    transition: all .5s ease;
+    height: auto;
+    overflow: hidden;
+}
+
+.list div:last-child > div > hr {
+    display: none;
+}
+
+.container button {
+    border: none;
+    padding: 5px 15px;
+}
+
 @media only screen and (min-width: 700px) {
     body {
         background-position: center;
